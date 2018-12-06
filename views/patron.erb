@@ -1,0 +1,27 @@
+<h1>Welcome Patron!</h1>
+<p>checkout list<p>
+  have checkboxes to return it to the library
+
+<!--
+try to add the form in the else if statement below if you have time! -->
+
+<% if @patrons.any?() %>
+<p>Click on your name if you are on the list!</p>
+
+<ul>
+  <% @patrons.each do |patron| %>
+    <li><a href="/patrons/<%= patron.id() %>"><%= patron.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>There are no patrons added yet!</p>
+<% end %>
+
+<p>Add a patron to the database:</p>
+
+<form action="/patron" method="post">
+  <label for="name">Patron's name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add patron</button>
+</form>

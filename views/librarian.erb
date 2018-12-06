@@ -1,0 +1,17 @@
+<p>Book listings</p>
+<p>List of checked out books</p>
+<p>Add books</p>
+<p>Optional:Delete Patron</p>
+
+
+<% if @patrons.any?() %>
+<p>Click on an patron to see information about them and to assign them to different movies:</p>
+
+<ul>
+  <% @patrons.each do |patron| %>
+    <li><a href="/patrons/<%= patron.id() %>"><%= patron.name() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>There are no patrons added yet!</p>
+<% end %>
