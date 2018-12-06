@@ -22,6 +22,7 @@ get('/patron') do
 end
 
 get('/librarian') do
+  @books = Book.all()
   erb(:librarian)
 end
 
@@ -29,10 +30,31 @@ get('/author') do
   erb(:author)
 end
 
-post("/patron") do
+post('/patron') do
   name = params.fetch("name")
   patron = Patron.new({:name => name, :checkout_books => nil, :id => nil})
   patron.save()
   @patrons = Patron.all()
   erb(:patron)
+end
+
+get('/patrons/:id') do
+  @patron = Patron.find(params.fetch("id").to_i())
+  @patrons = Patron.all()
+  erb(:patron_info)
+end
+
+get('/add_book') do
+  @books = Book.all()
+  erb(:librarian)
+end
+
+post('/add_book') do
+  title = params.fetch("title")
+  author = params.fetch("author")
+  status = params.fetch("status")
+  book = Book.new({:title => title, :author => author, :status => status, :id => nil})
+  book.save()
+  @books = Book.all()
+  erb(:librarian)
 end

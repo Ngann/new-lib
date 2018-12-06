@@ -1,17 +1,34 @@
-<p>Book listings</p>
 <p>List of checked out books</p>
-<p>Add books</p>
+<p>List of Patrons</p>
 <p>Optional:Delete Patron</p>
 
-
-<% if @patrons.any?() %>
-<p>Click on an patron to see information about them and to assign them to different movies:</p>
-
+<% if @books.any?() %>
+<h3>Book listings</h3>
 <ul>
-  <% @patrons.each do |patron| %>
-    <li><a href="/patrons/<%= patron.id() %>"><%= patron.name() %></a></li>
+  <% @books.each do |book| %>
+    <li><a href="/books/<%= book.id() %>"><%= book.title() %></a></li>
   <% end %>
 </ul>
+
 <% else %>
-  <p>There are no patrons added yet!</p>
+  <h3>There are no books added yet!</h3>
 <% end %>
+
+
+
+<h3>Add books</h3>
+<form action="/add_book" method="post">
+  <label for="title">Book title:</label>
+  <input id="title" name="title" type="text">
+  <label for="author">Author:</label>
+  <input id="author" name="author" type="text">
+  <div class="radio">
+    <label>
+      <input type="radio" name="status" value="t" checked>Available
+    </label>
+    <label>
+      <input type="radio" name="status" value="f">Checked Out
+    </label>
+  </div>
+  <button type="submit">Add Book</button>
+</form>
