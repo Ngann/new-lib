@@ -1,0 +1,12 @@
+
+<form action="/patron_listing/<%= @patron.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+    <% @patrons.each() do |patron| %>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="patron_ids[]" value="<%= patron.id() %>"><%= patron.name() %>
+        </label>
+      </div>
+    <% end %>
+  <button type="delete">Delete a Patron</button>
+</form>

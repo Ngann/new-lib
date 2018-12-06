@@ -13,6 +13,7 @@ get('/') do
 end
 
 get('/book_list') do
+  @books = Book.all()
   erb(:book_list)
 end
 
@@ -23,6 +24,7 @@ end
 
 get('/librarian') do
   @books = Book.all()
+  @patrons = Patron.all()
   erb(:librarian)
 end
 
@@ -38,6 +40,13 @@ post('/patron') do
   erb(:patron)
 end
 
+post('/delete_patron/:id') do
+  patron_id = Patron.find(params.fetch("id").to_i())
+  patron_id.delete()
+  @patrons = Patron.all()
+  erb(:patron)
+end
+
 get('/patrons/:id') do
   @patron = Patron.find(params.fetch("id").to_i())
   @patrons = Patron.all()
@@ -46,6 +55,7 @@ end
 
 get('/add_book') do
   @books = Book.all()
+  @patrons = Patron.all()
   erb(:librarian)
 end
 
@@ -56,5 +66,6 @@ post('/add_book') do
   book = Book.new({:title => title, :author => author, :status => status, :id => nil})
   book.save()
   @books = Book.all()
+  @patrons = Patron.all()
   erb(:librarian)
 end

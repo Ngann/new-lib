@@ -52,7 +52,8 @@ class Patron
   end
 
   def delete()
-    returned_books = DB.exec("DELETE FROM patron WHERE id = #{self.id()};")
+    @id = self.id()
+    DB.exec("DELETE FROM patron WHERE id = #{self.id()};")
   end
 
 end

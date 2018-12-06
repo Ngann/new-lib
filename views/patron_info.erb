@@ -2,3 +2,8 @@
 
 <p>checkout list<p>
 have checkboxes to return it to the library
+
+
+<form action="/delete_patron/<%= @patron.id() %>" method="post">
+  <button type="delete">Delete a Patron</button>
+</form>

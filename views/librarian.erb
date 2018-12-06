@@ -1,6 +1,17 @@
 <p>List of checked out books</p>
-<p>List of Patrons</p>
 <p>Optional:Delete Patron</p>
+
+<h3>List of Patrons</h3>
+
+<% @patrons.each() do |patron| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="patron_ids[]" value="<%= patron.id() %>"><%= patron.name() %>
+    </label>
+  </div>
+<% end %>
+
+
 
 <% if @books.any?() %>
 <h3>Book listings</h3>
@@ -13,8 +24,6 @@
 <% else %>
   <h3>There are no books added yet!</h3>
 <% end %>
-
-
 
 <h3>Add books</h3>
 <form action="/add_book" method="post">
@@ -32,3 +41,8 @@
   </div>
   <button type="submit">Add Book</button>
 </form>
+
+<h6><a href="/book_list">Book Listing</a></h6>
+<h6><a href="/author">Author Listing</a></h6>
+<h6><a href="/patron">Patron</a></h6>
+<h6><a href="/">Home</a></h6>
