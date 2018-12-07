@@ -1,1 +1,27 @@
 <p>Author</p>
+
+<% if @authors.any?() %>
+<p>Author List!</p>
+
+<ul>
+  <% @authors.each do |author| %>
+    <li><a href="/authors/<%= author.id() %>"><%= author.name() %>,<%= author.books() %></a></li>
+  <% end %>
+</ul>
+<% else %>
+  <p>There are no authors added yet!</p>
+<% end %>
+
+<p>Add a author to the database:</p>
+
+<form action="/author" method="post">
+  <label for="name">Author's name:</label>
+  <input id="name" name="name" type="text">
+  <label for="books">Book Title:</label>
+  <input id="books" name="books" type="text">
+
+  <button type="submit">Add author</button>
+</form>
+
+
+<a href="/">Home</a>

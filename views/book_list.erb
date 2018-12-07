@@ -1,15 +1,14 @@
-<% if @books.any?() %>
-<h3>Book listings</h3>
-<ul>
-  <% @books.each do |book| %>
-    <li><a href="/books/<%= book.id() %>"><%= book.title() %></a></li>
-  <% end %>
-</ul>
+<h3>Available Books</h3>
 
-<% else %>
-  <h3>There are no books added yet!</h3>
+<% @books.each() do |book| %>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="book_ids[]" value="<%= book.id() %>"><%= book.title() %>
+    </label>
+  </div>
 <% end %>
 
 
+
 <p>Checkout</p>
-<p>Return</p>
+<a href="/">Home</a>

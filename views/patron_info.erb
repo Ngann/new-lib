@@ -1,9 +1,13 @@
 <p><%= @patron.name()%></p>
 
-<p>checkout list<p>
-have checkboxes to return it to the library
+<p>Current Books Checked Out!<p>
+
 
 
 <form action="/delete_patron/<%= @patron.id() %>" method="post">
   <button type="delete">Delete a Patron</button>
 </form>
+
+<a href="/">Home</a>
+<p><a href="/checkout_list/<%= @patron.id() %>">Checkout</a></p>
+<p><a href="/book_list/<%= @patron.id() %>">Search Book</a></p>

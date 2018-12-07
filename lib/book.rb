@@ -71,4 +71,18 @@ class Book
   def ==(another_book)
     (self.title().==(another_book.title())).&(self.author().==(another_book.author())).&(self.status().==(another_book.status())).&(self.id().==(another_book.id()))
   end
+
+  def user
+    patron_books = []
+    results = DB.exec("SELECT book_id FROM patrons_books WHERE patron_id = #{self.id()};")
+    results.each() do |result|
+      book_id = result.fetch("book_id").to_i()
+      book = DB.exec("SELECT * FROM books WHERE id = #{book_id};")
+      name = book.first().fetch("name")
+      patron_books.push(Book.new({:title => title, :author => author, :status => status, :id => id}))
+    end
+    patron_books
+  end
+
+
 end

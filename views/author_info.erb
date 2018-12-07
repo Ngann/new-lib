@@ -1,0 +1,7 @@
+<p><%= @author.name()%></p>
+
+<form action="/delete_author/<%= @author.id() %>" method="post">
+  <button type="delete">Delete a Author</button>
+</form>
+
+<a href="/">Home</a>

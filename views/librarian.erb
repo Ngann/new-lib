@@ -11,6 +11,12 @@
   </div>
 <% end %>
 
+<form action="/patron_library" method="post">
+  <label for="name">Patron's name:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Add patron</button>
+</form>
+
 
 
 <% if @books.any?() %>
@@ -42,7 +48,7 @@
   <button type="submit">Add Book</button>
 </form>
 
-<h6><a href="/book_list">Book Listing</a></h6>
-<h6><a href="/author">Author Listing</a></h6>
-<h6><a href="/patron">Patron</a></h6>
-<h6><a href="/">Home</a></h6>
+<a href="/book_list">Book Listing |</a>
+<a href="/author">Author Listing |</a>
+<a href="/patron">Patron|</a>
+<a href="/">Home</a>
